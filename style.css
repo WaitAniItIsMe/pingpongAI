@@ -1,0 +1,15 @@
+canvas{
+    box-shadow: 6px 6px 6px black;
+    border: 2px dashed rgb(154, 247, 201);
+    border-radius: 4px;
+}
+
+#footer{
+    background:rgba(175, 255, 215, 0.603);
+    width: 100%;
+    line-height: 4;
+    border-radius: 6px;
+    position: fixed;
+    bottom: 0;
+    margin: auto;
+}

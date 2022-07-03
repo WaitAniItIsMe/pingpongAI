@@ -1,5 +1,5 @@
 
-/*created by prashant shukla */
+/*created by (NOT ME) */
 
 var paddle2 =10,paddle1=10;
 
@@ -22,14 +22,22 @@ var ball = {
 }
 
 function setup(){
-  var canvas =  createCanvas(700,600);
+  canvas =  createCanvas(680,600);
+  canvas.parent("canvas");
+  video = createCapture(VIDEO);
+  video.size(680, 600)
+  video.hide();
+  poseNet = ml5.poseNet(video, loadSuccessful)
 }
 
+function loadSuccessful(){
+  console.log("posenet succesfully initialized")
+}
 
 function draw(){
 
  background(0); 
-
+ image(video, 0, 0, 680, 600)
  fill("black");
  stroke("black");
  rect(680,0,20,700);
@@ -38,6 +46,7 @@ function draw(){
  stroke("black");
  rect(0,0,20,700);
  
+
    //funtion paddleInCanvas call 
    paddleInCanvas();
  
@@ -53,8 +62,8 @@ function draw(){
     fill("#FFA500");
     stroke("#FFA500");
    var paddle2y =ball.y-paddle2Height/2;  rect(paddle2Y,paddle2y,paddle2,paddle2Height,100);
-    
-    //function midline call
+
+    //midline is the line in the middle
     midline();
     
     //funtion drawScore call 
@@ -163,3 +172,4 @@ function paddleInCanvas(){
     mouseY =0;
   }  
 }
+
