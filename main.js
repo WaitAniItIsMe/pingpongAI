@@ -1,6 +1,10 @@
 
 /*created by (NOT ME) */
 
+rightWristX = 0;
+rightWristY = 0;
+scoreRightWrist = 0;
+
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -28,6 +32,16 @@ function setup(){
   video.size(680, 600)
   video.hide();
   poseNet = ml5.poseNet(video, loadSuccessful)
+  poseNet.on("pose", gotPoses)
+}
+
+function gotPoses(results){
+  if(results.length > 0){
+    rightWristX = results[0].pose.rightWrist.x;
+    rightWristY = results[0].pose.rightWrist.y;
+    scoreRightWrist = results[0].pose.keypoints[10].score;
+    console.log(results);
+  }
 }
 
 function loadSuccessful(){
@@ -46,6 +60,14 @@ function draw(){
  stroke("black");
  rect(0,0,20,700);
  
+ 
+ //if(scoreRightWrist > 0.2){
+
+    fill("red");
+    stroke("red");
+    
+    circle(rightWristX, rightWristY, 40);
+ //}
 
    //funtion paddleInCanvas call 
    paddleInCanvas();
